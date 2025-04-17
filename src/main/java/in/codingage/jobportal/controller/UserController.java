@@ -29,14 +29,10 @@ public class UserController {
     }
 
 
-    @GetMapping("/Job/readAll")
-public ResponseEntity<List<Job>> getAllJobs() {
-    List<Job> jobs = jobService.getAllJobs();
-    if (jobs == null || jobs.isEmpty()) {
-        return ResponseEntity.noContent().build(); // returns 204
+    @GetMapping("/readAll")
+    public ResponseEntity<List<Job>> getAllJobs() {
+        return ResponseEntity.ok(jobService.getAllJobs());
     }
-    return ResponseEntity.ok(jobs);
-}
 
 
     @GetMapping("readById")
