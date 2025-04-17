@@ -33,10 +33,14 @@ public class JobController {
     }
 
 
-    @GetMapping("/readAll")
-    public ResponseEntity<List<Job>> getAllJobs() {
-        return ResponseEntity.ok(jobService.getAllJobs());
+  @GetMapping("/Job/readAll")
+public ResponseEntity<List<Job>> getAllJobs() {
+    List<Job> jobs = jobService.getAllJobs();
+    if (jobs == null || jobs.isEmpty()) {
+        return ResponseEntity.noContent().build(); // returns 204
     }
+    return ResponseEntity.ok(jobs);
+}
 
     @PutMapping("/updateById")
     public ResponseEntity<?> updateJob(@RequestParam String id, @RequestBody Job updatedJob) {
